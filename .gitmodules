@@ -1,0 +1,3 @@
+[submodule "hardware/library/openkey"]
+	path = hardware/library/openkey
+	url = ../openkey-kicad-library
