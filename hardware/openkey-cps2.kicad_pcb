@@ -74,7 +74,7 @@
     )
   )
 
-  (property "REV" "2022-12-07")
+  (property "REV" "2022-12-17")
 
   (net 0 "")
   (net 1 "VCC")
@@ -2488,6 +2488,7 @@
   (segment (start 146.5 103.75) (end 146.5 99.75) (width 0.25) (layer "F.Cu") (net 2) (tstamp aed3ae34-0a55-4100-a2d9-d1aca8c2d501))
   (segment (start 135.1 90.9) (end 133.125 90.9) (width 0.25) (layer "F.Cu") (net 2) (tstamp af48ec45-14f9-4092-ae61-f41d5a987e19))
   (segment (start 143.665 97.665) (end 143.665 93.585) (width 0.25) (layer "F.Cu") (net 2) (tstamp bd3a3c60-3da8-4e74-82d0-f3e4c7421d17))
+  (segment (start 137.25 104.15) (end 137.25 110.53) (width 0.25) (layer "F.Cu") (net 2) (tstamp d97e52ea-3cc6-4457-bdc9-1e08efaf68d0))
   (segment (start 139.8 104.15) (end 137.25 104.15) (width 0.25) (layer "F.Cu") (net 2) (tstamp dc8faf1f-4aa9-432a-9720-d9858c223a27))
   (segment (start 145 104.25) (end 146 104.25) (width 0.25) (layer "F.Cu") (net 2) (tstamp e6fe8e59-9745-43d7-8542-70ac39ffa961))
   (segment (start 146.5 99.75) (end 146.5 98.2875) (width 0.25) (layer "F.Cu") (net 2) (tstamp f07b97fe-9e02-4695-80df-5af497a8cccd))
