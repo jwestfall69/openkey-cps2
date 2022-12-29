@@ -1,7 +1,51 @@
 # openkey-cps2
 
+* [Overview](#overview)
+* [Project Status](#project-status)
+* [Supported Games](#supported-games)
+* [Hardware](#hardware)
+   * [PCB Manufacturing](#pcb-manufacturing)
+   * [BOM](#bom)
+   * [Assembly](#assembly)
+* [Programming](#programming)
+  * [Hardware](#hardware-1)
+  * [Software](#software)
+* [Installation](#installation)
+  * [93646B-3](#93646b-3)
+  * [93646B-4](#93646b-4)
+  * [93646B-5](#93646b-5)
+  * [93646B-6](#93646b-6)
+  * [93646B-7](#93646b-7)
+  * [97691A-3 (all in one)](#97691a-3-all-in-one)
+  * [97691A-4 (all in one)](#97691a-4-all-in-one)
+
+## Overview
+This is an opensource/hardware implementation of an on the fly CPS2 key programmer that consists of a board thats soldered onto the CPS2 B board or the CPS2 all-in-one boards.
+
+Individual boards:
+![board](images/board.jpg)
+
+Panel:
+![pane](images/board_panel.jpg)
+
+Details on *how* to program a CPS2 key data can be found in [Eduardo Cruz](http://arcadehacker.blogspot.com/)'s [write up](http://arcadehacker.blogspot.com/2016/09/capcom-cps2-security-programming-guide.html) and associated [firmware](https://github.com/ArcadeHacker/ArcadeHacker_CPS2).
+
+Details on *what* to program can be found in MAME's [CPS2 driver](https://github.com/mamedev/mame/blob/master/src/mame/capcom/cps2.cpp) (the *.key files).
+
+## Project Status
+---
+**PCB:** I would consider the design PCB done at this point.  I'm open to any input on changes/improvements as this is my first PCB design.
+
+**Firmware:** Should be fulling working but more testing would be nice.  There are a lot of CPS2 games/keys.
+
+**Documentation:** Work in progress
+
 
 ## Supported Games
+---
+**IMPORTANT**: You will want to program the ATtiny before soldering your game jumpers.  Specifically jumper #5 is also the programming pin on the ATtiny.  Jumping it will tie the pin to ground which will make programming impossible.
+
+
 | Jumper<br>1234 5678 | Program<br>ROM Labels | Mame<br>Rom Set | Game Names | Tested |
 |:---------------:|:-------------|:------------|:-----------|:------:|
 | 0000 0000 | nffe | 1944 | 1944: The Loop Master (Euro 000620) |  |
@@ -178,3 +222,135 @@
 | 1010 1100 | xvsj<br>xvsj<br>xvsj<br>xvsj | xmvsfj<br>xmvsfjr1<br>xmvsfjr2<br>xmvsfjr3 | X-Men Vs. Street Fighter (Japan 961023)<br>X-Men Vs. Street Fighter (Japan 961004)<br>X-Men Vs. Street Fighter (Japan 960910)<br>X-Men Vs. Street Fighter (Japan 960909) |  |
 | 1010 1101 | xvsu<br>xvsu<br>xvsu | xmvsfu<br>xmvsfur1<br>xmvsfur2 | X-Men Vs. Street Fighter (USA 961023)<br>X-Men Vs. Street Fighter (USA 961004)<br>X-Men Vs. Street Fighter (USA 960910) |  |
 | 1010 1110 | | | Phoenix Key (0xff filled) | |
+
+## Hardware
+---
+### PCB Manufacturing
+For thickness I've been using 1mm, but standard 1.6mm will work fine too.
+
+The board has 2 sets of castellated holes (through holes cut in half on the edge of the board).  When ordering there will likely be an option for castellated holes that you will want to pick.  They require special processing and will likely mean additional costs.
+
+I've been using [jlcpcb](https://jlcpcb.com/) for PCB manufacturing.  For them, picking castellated holes adds around a $40 fee to the order.  They also seen to have an unwritten limit of 30 PCBs per order that have castellated holes.  If you go above this they may reject your order.
+
+If you want more then 30 PCBs I would just use the panel version openkey-cps2 which has 9 PCBs (3x3) on each panel.  Each panel is considered a PCB, so you can get up to 9 * 30 PCBs.  Thats way more then anyone would ever need, but to does get the price per board way down.
+
+### BOM
+| Description | Part Number | DigiKey | Mouser | Notes |
+|-------------|-------------|---------|--------|-------|
+| ATtiny404 20Mhz | ATTINY404-SSN | [ATTINY404-SSN-ND](https://www.digikey.com/en/products/detail/microchip-technology/ATTINY404-SSN/9947546) | [556-ATTINY404-SSNR](https://www.mouser.com/ProductDetail/Microchip-Technology-Atmel/ATTINY404-SSNR?qs=F5EMLAvA7IAEqD7Aw0z%252B9Q%3D%3D) | Other ATtiny tinyAVR 0/1/2-series models should be viable as well.  The code compiles to a little over 3K in size, so any that have 4K or more of flash should work.  Just note I have only tested with 404s |
+| 100nf / 0.1uf SMD Ceramic Capacitor 0805 Size | | | | |
+
+
+### Assembly
+Nothing special here just install the ATtiny and the bypass cap.
+
+**IMPORTANT**: You will want to program the ATtiny before soldering your game jumpers.  Specifically jumper #5 is also the programming pin on the ATtiny.  Jumping it will tie the pin to ground which will make programming impossible.
+
+## Programming
+---
+### Hardware
+Programming is done with a UPDI programmer.  I've been using this one:
+
+[Serial UPDI Programmer for ATmega 0-Series, or ATtiny 0-Series or 1-Series, or AVR DA or AVR DB](https://www.amazon.com/dp/B09X64YRLD?psc=1&ref=ppx_yo2ov_dt_b_product_details)
+
+Note: This programmer (and likely others) has a switch for 3.3V and 5V.  Set it to 5V.
+
+The openkey-cps2 programming port consists of 3x pads (VCC, GND, UPDI) that will need to be connected to the programmer.  I've been using a short 3 pin female to female IDC cable with [pogo pins](https://www.amazon.com/dp/B00X7C8PGE?psc=1&ref=ppx_yo2ov_dt_b_product_details) on one end to do this.  Additionally you could probably use something like [this](https://www.amazon.com/dp/B09MGG4C6X?ref=ppx_yo2ov_dt_b_product_details&th=1) if you are going to be programming a bunch.
+
+![programming gear](images/programming_gear.jpg)
+
+Of course be sure you properly orient the board so the labeled pads match up.  vcc to vcc, gnd to gnd, and updi to updi.
+
+### Software
+For software I've been using the [Arduino IDE](https://www.arduino.cc/en/software/OldSoftwareReleases) with [megaTinyCore](https://github.com/SpenceKonde/megaTinyCore), which adds support for tinyAVR 0/1/2-Series MCUs.
+
+**NOTE**: The makers of megaTinyCore currently recommend using Arduino IDE version 1.8.13 for best compatibility.
+ 2.0 definitely does not work!
+
+To install the megaTinyCore you, should just need to add http://drazzy.com/package_drazzy.com_index.json to "Addit
+ional Boards Manager URLs" in the settings for the Arduino IDE.
+
+From there you need to configure the board/programming settings.  I've been using these:
+
+![arduino ide settings](images/arduino_ide_settings.jpg)
+
+## Installation
+----
+Below are pictures for installing openkey-cps2 on the different cps2 board revisions.  
+
+You will notice there are 3 boxes on the board, 2 with solder pads (+5V and GND), and 1 jumper.  Within the box is a short hand version of which board revisions need which of them.
+
+  * +5V has **B-345** which means its needed for revisions 93646**B-3**, 93646**B-4**, and 93646**B-5**
+  * JUMP has **B-67** and **A-34** which means it needs to be jumped for revisions 93646**B-6**, 93646**B-7**, 97691**A-3** and 97691**A-4**
+  * GND has **B-34** which means its needed for revisions 93646**B-3** and 93646**B-4**
+
+### **93646B-3**
+### **93646B-4**
+---
+93646B-3 and 93646B-4 have the same install process.
+
+Identify CN2 on the top side of the CPS2 B Board PCB.  This is where openkey-cps2 will be installed.
+
+Your board will likely have the resistor shown in the below picture.
+![b-34-top](images/b_34_top.jpg)
+
+Temporarily desolder the top connection of the resistor, move it out of the way and install openkey-cps2 as shown below.  Additionally make note of the red and green arrows/lines as these will be the locations we wire up for +5V and GND.
+
+![b-34-install1](images/b_34_install1.jpg)
+
+Re-solder the resistor and wire up the +5V and GND wires as shown below.  Then jumper 1 to 8 based on which game you need. 
+
+![b-34-install2](images/b_34_install2.jpg)
+
+### **93646B-5**
+---
+NOTE: I don't have a 93646B-5, but this is what should be required for the installation.
+
+Identify CN9 on the top side of the CPS2 B Board PCB.  The underside of CN9 is what we will be installing openkey-cps2 to.
+
+Top:
+![b-5 top](images/b_67_top.jpg)
+
+Bottom:
+![b-5 bottom](images/b_67_bottom.jpg)
+
+Solder the castellated holes on CN9 of openkey-cps2 to the underside pins for CN9 on the CPS2 PCB.  Additionally solder a wire going from the +5V pad on the openkey-cps2 to RA2 pin 1 as seen below.  Then jumper 1 to 8 based on which game you need.  
+
+Installed:
+![b-5 installed](images/b_5_installed.jpg)
+
+
+### **93646B-6**
+### **93646B-7**
+---
+93646B-6 and 93646B-7 have the same install process.
+
+Identify CN9 on the top side of the CPS2 B Board PCB.  The underside of CN9 is what we will be installing openkey-cps2 to.
+
+Top:
+![b-67 top](images/b_67_top.jpg)
+
+Bottom:
+![b-67 bottom](images/b_67_bottom.jpg)
+
+Solder the castellated holes on CN9 of openkey-cps2 to the underside pins for CN9 on the CPS2 PCB.  Additionally jumper the **JUMP** pad as pointed out by the green arrow in the picture below.  Then jumper 1 to 8 based on which game you need.  
+
+Installed![b-67 installed](images/b_67_installed.jpg)
+
+### **97691A-3 (all in one)**
+### **97691A-4 (all in one)**
+---
+97691A-3 and 97691A-4 have the same install process.
+
+Identify CN1 on the top side of the CPS2 PCB.  It should be next to the memory socket in the corner.  The underside of CN1 is what we will be installing openkey-cps2 to.
+
+Top:
+![a-34 top](images/a_34_top.jpg)
+
+Bottom:
+![a-34 bottom](images/a_34_bottom.jpg)
+
+openkey-cps2 will sit on top of those 4 resistors seen in the above picture.  Solder the castellated holes on CN9 of openkey-cps2 to the underside pins for CN1 on the CPS2 PCB.  Additionally jumper the **JUMP** pad as pointed out by the green arrow in the picture below.  Then jumper 1 to 8 based on which game you need.  
+
+Installed:
+![a-34 installed](images/a_34_installed.jpg)
