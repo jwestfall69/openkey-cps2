@@ -44,9 +44,9 @@ Details on *what* to program can be found in MAME's [CPS2 driver](https://github
 **IMPORTANT**: You will want to program the ATtiny before soldering your game jumpers.  Specifically jumper #5 is also the programming pin on the ATtiny.  Jumping it will tie the pin to ground which will make programming impossible.
 
 
-| Jumper<br>1234 5678 | Program<br>ROM Labels | Mame<br>Rom Set | Game Names |
+| Jumper<br>1234&nbsp;5678 | Program<br>ROM Labels | Mame<br>Rom Set | Game Names |
 |:---------------:|:-------------|:------------|:-----------|
-| 0000 0000 | nffe | 1944 | 1944: The Loop Master (Euro 000620) |
+| 0000&nbsp;0000 | nffe | 1944 | 1944: The Loop Master (Euro 000620) |
 | 0000 0001 | nffj | 1944j | 1944: The Loop Master (Japan 000620) |
 | 0000 0010 | nffu | 1944u | 1944: The Loop Master (USA 000620) |
 | 0000 0011 | 19xe | 19xx | 19XX: The War Against Destiny (Euro 960104) |
