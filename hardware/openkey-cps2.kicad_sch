@@ -1295,7 +1295,7 @@
     (in_bom yes) (on_board yes)
     (uuid d070f14a-2712-4457-b433-72745d2bc776)
     (property "Reference" "C1" (id 0) (at 147.32 69.85 90))
-    (property "Value" "100uf" (id 1) (at 147.32 77.47 90))
+    (property "Value" "100nf" (id 1) (at 147.32 77.47 90))
     (property "Footprint" "openkey:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder" (id 2) (at 151.13 72.6948 0)
       (effects (font (size 1.27 1.27)) hide)
     )
@@ -1464,7 +1464,7 @@
       (reference "#PWR0105") (unit 1) (value "GND") (footprint "")
     )
     (path "/d070f14a-2712-4457-b433-72745d2bc776"
-      (reference "C1") (unit 1) (value "100uf") (footprint "openkey:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder")
+      (reference "C1") (unit 1) (value "100nf") (footprint "openkey:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder")
     )
     (path "/a88dd831-c7ee-430b-a2ad-2753391a8f94"
       (reference "CN9") (unit 1) (value "Conn_01x06") (footprint "Connector_PinHeader_2.54mm:PinHeader_1x06_P2.54mm_Vertical")

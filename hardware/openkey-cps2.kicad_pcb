@@ -74,7 +74,7 @@
     )
   )
 
-  (property "REV" "2022-12-17")
+  (property "REV" "2023-01-03")
 
   (net 0 "")
   (net 1 "VCC")
@@ -383,7 +383,7 @@
       (effects (font (size 0.7 0.7) (thickness 0.12)))
       (tstamp e67203db-b9a1-40e0-8765-d6c1c0026d11)
     )
-    (fp_text value "100uf" (at -2.5 0) (layer "F.SilkS")
+    (fp_text value "100nf" (at -2.5 0) (layer "F.SilkS")
       (effects (font (size 0.7 0.7) (thickness 0.12)))
       (tstamp ccb735bb-6743-4c12-80a1-d70819e08cb9)
     )
