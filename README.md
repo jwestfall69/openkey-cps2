@@ -22,10 +22,12 @@
 ## Overview
 This is an opensource/hardware implementation of an on the fly CPS2 key programmer that consists of a board thats soldered onto the CPS2 B board or the CPS2 all-in-one boards.
 
-Individual boards:
+**NOTE**: There is a typo on the silkscreen on hardware revision 2022-12-17.  The bypass cap is listed as being 100uf, when it should be 100nf.  This typo was fixed in hardware revision 2023-01-03, however the pictures below are all from the typo'd 2022-12-17 revision.
+
+Individual boards:<br>
 ![board](images/board.jpg)
 
-Panel:
+Panel:<br>
 ![pane](images/board_panel.jpg)
 
 Details on *how* to program a CPS2 key data can be found in [Eduardo Cruz](http://arcadehacker.blogspot.com/)'s [write up](http://arcadehacker.blogspot.com/2016/09/capcom-cps2-security-programming-guide.html) and associated [firmware](https://github.com/ArcadeHacker/ArcadeHacker_CPS2).
