@@ -10,6 +10,7 @@
 * [Programming](#programming)
   * [Hardware](#hardware-1)
   * [Software](#software)
+  * [Testing](#testing)
 * [Installation](#installation)
   * [93646B-3](#93646b-3)
   * [93646B-4](#93646b-4)
@@ -271,6 +272,57 @@ ional Boards Manager URLs" in the settings for the Arduino IDE.
 From there you need to configure the board/programming settings.  I've been using these:
 
 ![arduino ide settings](images/arduino_ide_settings.jpg)
+
+### Testing
+If you are selling or giving away the openkey-cps2's that you have assembled/programmed its nice to be able to test them first.  This section explains how you can test the board without having to install it.
+
+You will need to get your hands on a "1944: The Loop Master (Euro 000620)" in a 93646B-6 or 93646B-7 B board.  For mine I just made a conversion using the 1944 mame romset.  This specific game is needed because its game jumper 0000 0000.
+
+Additionally you will need to create the following cable
+
+Side A:<br>
+![test cable side a](images/test_cable_side_a.jpg)
+
+Side B:<br>
+![test cable side b](images/test_cable_side_b.jpg)
+
+I would advise making this cable about 24 inches long.
+
+You will note that side "A" is 6 pin female connectors, which break out into a 5 pin female connector and 3 pin female connector "B" side.  The "B" side then has pogo pins installed with super glue to keep them steady.  Additionally on the 3 pin female connector "B" side, pins 2 and 3 are just connected to each other.
+
+The red wire is +5V, black wire is GND, remaining are data lines.
+
+The "A" side 6 pin connector should be plugged into CN9 on the B board, with +5V on pin 1, and GND on pin 6 as shown.
+
+![test cable cn9](images/test_cable_cn9.jpg)
+
+**IMPORTANT**: The +5V on the 3 pin female/pogo pin connector will be live when you power on the board, so be extra careful you don't touch anything with it or it could cause a short/damage.
+
+CPS2 boards will hold onto the programmed key data for a while after they have been powered off.  So to properly test the openkey-cps2 its best to program the wrong key, verify it breaks the game, then program the correct key to verify it works.
+
+**Programming the WRONG key**
+1. Power on the CPS2 board
+2. Connect the 5 pogo pin connector to pins 2-6 of CN9 on the openkey-cps2
+3. Connect the 3 pogo pin connector to the UPDI header on openkey-cps2, with the red wire connected to VCC pad, and the pins 2-3 connected to GND and UPDI pads
+
+![test program wrong key](images/test_program_wrong_key.jpg)
+
+This should result is a solid color screen, mine is normally purple.
+
+The UPDI pad on the UPDI header is shared with jumper #5 of the game select.  By jumping the GND and UPDI pads together its cause the MCU to program game 0000 1000 or 19XX: The War Against Destiny (USA 951207), which is the wrong key for 1944: The Loop Master (Euro 000620)
+
+**Programming the CORRECT key**
+1. Remove both the 5 pogo pin and 3 pogo pin connectors from the openkey-cps2 board
+2. Connect the 5 pogo pin connector to pins 2-6 of CN9 on the openkey-cps2
+3. Using the 3 pogo pin connector, only connect the red wire pogo pin to the VCC pad on the UPDI header.  Do not connect anything to the GND and UPDI pads
+
+![test program correct key](images/test_program_correct_key.jpg)
+
+By only applying +5V on the VCC pad on UPDI header and NOT jumping the GND/UPDI pads it will cause the MCU to program game 0000 0000.
+
+The game should boot a few seconds later
+
+You do not need to power off the CPS2 board in between programming the wrong/correct key or even between testing multiple openkey-cps2 board.  Part of the programming process will reset the game.
 
 ## Installation
 Below are pictures for installing openkey-cps2 on the different cps2 board revisions.  
