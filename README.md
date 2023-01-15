@@ -228,11 +228,14 @@ Details on *what* to program can be found in MAME's [CPS2 driver](https://github
 ### PCB Manufacturing
 For thickness I've been using 1mm, but standard 1.6mm will work fine too.
 
-The board has 2 sets of castellated holes (through holes cut in half on the edge of the board).  When ordering there will likely be an option for castellated holes that you will want to pick.  They require special processing and will likely mean additional costs.
+The board has 2 sets of castellated holes (through holes cut in half on the edge of the board).  When ordering make sure you pick the option for castellated holes as they require special processing.  If you don't pick the option, your castellated holes will likely be mangled and look like this
 
-I've been using [jlcpcb](https://jlcpcb.com/) for PCB manufacturing.  For them, picking castellated holes adds around a $40 fee to the order.  They also seen to have an unwritten limit of 30 PCBs per order that have castellated holes.  If you go above this they may reject your order.
+**Mangled Castellated Holes**<br>
+![mangled castellated holes](images/mangled_castellated_holes.jpg)
 
-If you want more then 30 PCBs I would just use the panel version openkey-cps2 which has 9 PCBs (3x3) on each panel.  Each panel is considered a PCB, so you can get up to 9 * 30 PCBs.  Thats way more then anyone would ever need, but to does get the price per board way down.
+I've been using [jlcpcb](https://jlcpcb.com/) for PCB manufacturing.  For them, picking castellated holes adds around a $40 fee to the order.  They also seem to have an unwritten limit of 30 PCBs per order that have castellated holes.  If you go above this they may reject your order or ask you if its ok to remove the castellated holes option (don't do it!).
+
+If you want more then 30 PCBs, I would just use the panel version openkey-cps2 which has 9 PCBs (3x3) on each panel.  Each panel is considered a PCB, so you can get up to 9 * 30 openkey-cps2 boards.  Thats way more then anyone would ever need, but to does get the price per board way down.
 
 ### BOM
 | Description | Part Number | DigiKey | Mouser | Notes |
