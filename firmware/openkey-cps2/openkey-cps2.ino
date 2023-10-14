@@ -243,7 +243,7 @@ struct game_data_t game_data[MAX_GAME_NUM + 1] = {
 
 void setup() { 
 
-  delay(50);
+  delay(500);
   
   // set the programming pins as outputs
   PORTB.DIR = PIN0_bm | PIN1_bm | PIN2_bm | PIN3_bm;
