@@ -5,6 +5,7 @@
 *.000
 *.bak
 *.bck
+*.lck
 *.kicad_pcb-bak
 *.kicad_sch-bak
 *-backups
@@ -24,9 +25,10 @@ fp-info-cache
 *.dsn
 *.ses
 
-# Exported BOM files
-*.xml
+# exports
+production
 *.csv
-
-# Exported gerber files
 hw-rev-*
+
+# Kicad's internal git history junk
+.history

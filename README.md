@@ -29,7 +29,7 @@ Individual boards:<br>
 ![board](images/board.jpg)
 
 Panel:<br>
-![pane](images/board_panel.jpg)
+![pane](images/panel/panel.png)
 
 Details on *how* to program a CPS2 key data can be found in [Eduardo Cruz](http://arcadehacker.blogspot.com/)'s [write up](http://arcadehacker.blogspot.com/2016/09/capcom-cps2-security-programming-guide.html) and associated [firmware](https://github.com/ArcadeHacker/ArcadeHacker_CPS2).
 
@@ -235,7 +235,8 @@ The board has 2 sets of castellated holes (through holes cut in half on the edge
 
 I've been using [jlcpcb](https://jlcpcb.com/) for PCB manufacturing.  For them, picking castellated holes adds around a $40 fee to the order.  They also seem to have an unwritten limit of 30 PCBs per order that have castellated holes.  If you go above this they may reject your order or ask you if its ok to remove the castellated holes option (don't do it!).
 
-If you want more then 30 PCBs, I would just use the panel version openkey-cps2 which has 9 PCBs (3x3) on each panel.  Each panel is considered a PCB, so you can get up to 9 * 30 openkey-cps2 boards.  Thats way more then anyone would ever need, but to does get the price per board way down.
+If you want more then 30 PCBs or want them assembled you will want to use the
+panel version of openkey-cps2.  More detail regarding this can be found in [PANEL.md](PANEL.md).
 
 ### BOM
 | Description | Part Number | DigiKey | Mouser | Notes |
